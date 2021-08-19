@@ -17,6 +17,8 @@ class ThirdTaskConstants {
   static const MovieEndpoint = "/discover/movie";
   // the base URL For images
   static const BaseImagePath = "https://image.tmdb.org/t/p/w500";
+  //
+  static const TopRatedApi = '&sort_by=vote_average.desc';
 }
 
 enum MoviesSortBy { popularity, recent }

@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hackathon_fatura/tasks/third_task/third_task_constants.dart';
 import 'package:hackathon_fatura/widget/movie_widget.dart';
 import 'package:hackathon_fatura/widget/no_connection_widget.dart';
 
@@ -63,8 +64,8 @@ class _ThirdTaskScreenState extends State<ThirdTaskScreen> with TickerProviderSt
       body: TabBarView(
         controller: _controller,
         children: [
-          _isConnectionStablished ? MovieWidget(): NoConnectionWidget(),
-          Center(child: Text('2'),),
+          _isConnectionStablished ? new MovieWidget(ThirdTaskConstants.BaseURL+ThirdTaskConstants.BaseAPIVersion+ThirdTaskConstants.MovieEndpoint+ThirdTaskConstants.TheMovieDBAPIKey): NoConnectionWidget(),
+          _isConnectionStablished ? new MovieWidget(ThirdTaskConstants.BaseURL+ThirdTaskConstants.BaseAPIVersion+ThirdTaskConstants.MovieEndpoint+ThirdTaskConstants.TheMovieDBAPIKey+ThirdTaskConstants.TopRatedApi): NoConnectionWidget(),
           Center(child: Text('3'),),
         ],
       ),

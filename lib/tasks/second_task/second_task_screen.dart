@@ -24,7 +24,8 @@ class BackgroundWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     print("Building BackgroundWidget");
 
-    return Container(color: Colors.amber, child: child);
+    return Container(
+        color: Colors.amber, child: child);
   }
 }
 
@@ -37,8 +38,9 @@ class _SecondTaskScreenState extends State<SecondTaskScreen> {
     print("Building SecondTaskScreen");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second task"),
+        title: const Text("Second task"),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
@@ -46,12 +48,12 @@ class _SecondTaskScreenState extends State<SecondTaskScreen> {
                 Colors.primaries[_random.nextInt(Colors.primaries.length)];
           });
         },
-        child: Icon(Icons.colorize),
+        child:const Icon(Icons.colorize),
       ),
       body: BackgroundWidget(
           child: Center(
         child: Container(
-          width: 100,
+          width:  100,
           height: 100,
           color: _randomColor,
         ),

@@ -8,6 +8,11 @@ import 'package:hackathon_fatura/widget/favourite_button_widget.dart';
 
 class MovieWidget extends StatefulWidget {
 
+  String apiUrl = '';
+
+
+  MovieWidget(this.apiUrl);
+
   @override
   _MovieWidgetState createState() => _MovieWidgetState();
 }
@@ -22,12 +27,20 @@ class _MovieWidgetState extends State<MovieWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    MovieProvider.getMovieData().then((value){
+    MovieProvider.getMovieData(widget.apiUrl).then((value){
       setState(() {
         _model = value;
         _isLoading = false;
       });
     });
+  }
+
+  String imageUrl(String? url){
+    if(url == null){
+      return "";
+    } else {
+      return ThirdTaskConstants.BaseImagePath+url;
+    }
   }
 
 
@@ -48,7 +61,7 @@ class _MovieWidgetState extends State<MovieWidget> {
                   Container(
                     height: 100,
                     child: CachedNetworkImage(
-                      imageUrl: ThirdTaskConstants.BaseImagePath+_model.results[index].backdropPath,
+                      imageUrl: imageUrl(_model.results[index].backdropPath),
                       placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
                       errorWidget: (context, url, error) => Center(child: Icon(Icons.error , color: Colors.blue,),),
                     ),
@@ -58,9 +71,9 @@ class _MovieWidgetState extends State<MovieWidget> {
                     children: [
                       Container(
                         width: 100,
-                        child: Text(_model.results[index].title , style: TextStyle(fontWeight: FontWeight.bold),),
+                        child: Text(_model.results[index].title ?? "" , style: TextStyle(fontWeight: FontWeight.bold),),
                       ),
-                      FavouriteButtonWidget(_model.results[index].id , _model.results[index].backdropPath , _model.results[index].title)
+                      FavouriteButtonWidget(_model.results[index].id , _model.results[index].backdropPath ?? "" , _model.results[index].title ?? "")
                     ],
                   )
                 ],

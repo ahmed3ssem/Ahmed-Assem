@@ -42,7 +42,6 @@ class Result {
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.releaseDate,
     required this.title,
     required this.video,
     required this.voteAverage,
@@ -50,15 +49,14 @@ class Result {
   });
 
   bool adult;
-  String backdropPath;
+  String? backdropPath;
   List<int> genreIds;
   int id;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  DateTime releaseDate;
-  String title;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? title;
   bool video;
   double voteAverage;
   int voteCount;
@@ -72,7 +70,6 @@ class Result {
     overview: json["overview"],
     popularity: json["popularity"].toDouble(),
     posterPath: json["poster_path"],
-    releaseDate: DateTime.parse(json["release_date"]),
     title: json["title"],
     video: json["video"],
     voteAverage: json["vote_average"].toDouble(),
@@ -88,7 +85,6 @@ class Result {
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
     "title": title,
     "video": video,
     "vote_average": voteAverage,
