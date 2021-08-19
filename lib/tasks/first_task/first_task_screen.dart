@@ -10,6 +10,17 @@ import 'package:flutter/material.dart';
  you need to optimize build function as
  when i pressed on Button don't rebuild Background widget
  */
+
+class ColorNotifier extends ChangeNotifier {
+  Color myColor = Colors.grey;
+  Random _random = new Random();
+
+  void changeColor() {
+    int randomNumber = _random.nextInt(30);
+    myColor = Colors.primaries[randomNumber % Colors.primaries.length];
+    notifyListeners();
+  }
+}
 class FirstTaskScreen extends StatefulWidget {
   @override
   _FirstTaskScreenState createState() => _FirstTaskScreenState();
@@ -25,8 +36,7 @@ class BackgroundWidget extends StatelessWidget {
 }
 
 class _FirstTaskScreenState extends State<FirstTaskScreen> {
-  Color _randomColor = Colors.black;
-  final _random = Random();
+  final _notifier = ColorNotifier();
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +47,7 @@ class _FirstTaskScreenState extends State<FirstTaskScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            _randomColor =
-                Colors.primaries[_random.nextInt(Colors.primaries.length)];
-          });
+          _notifier.changeColor();
         },
         child: Icon(Icons.colorize),
       ),
@@ -48,12 +55,15 @@ class _FirstTaskScreenState extends State<FirstTaskScreen> {
         children: [
           Positioned.fill(child: BackgroundWidget()),
           Center(
-            child: Container(
-              width: 100,
-              height: 100,
-              color: _randomColor,
+            child: AnimatedBuilder(
+              animation: _notifier,
+              builder: (_, __) => Container(
+                height: 150,
+                width: 150,
+                color: _notifier.myColor,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
