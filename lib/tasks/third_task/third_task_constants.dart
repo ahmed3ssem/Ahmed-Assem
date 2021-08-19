@@ -19,6 +19,8 @@ class ThirdTaskConstants {
   static const BaseImagePath = "https://image.tmdb.org/t/p/w500";
   //
   static const TopRatedApi = '&sort_by=vote_average.desc';
+
+  static String defaultLanguage = 'en';
 }
 
 enum MoviesSortBy { popularity, recent }

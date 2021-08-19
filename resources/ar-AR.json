@@ -1,3 +1,6 @@
 {
-
+  "popular": "شائع",
+  "topRated": "أعلى التقييمات",
+  "favourite" : "المفضلة",
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت"
 }

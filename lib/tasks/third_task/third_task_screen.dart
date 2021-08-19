@@ -41,6 +41,22 @@ class _ThirdTaskScreenState extends State<ThirdTaskScreen> with TickerProviderSt
     }
   }
 
+  void changeLanguage(){
+    if(ThirdTaskConstants.defaultLanguage== 'en'){
+      setState(() {
+        Locale locale = Locale('ar' , 'AR');
+        context.setLocale(locale);
+        ThirdTaskConstants.defaultLanguage = 'ar';
+      });
+    } else {
+      setState(() {
+        Locale locale = Locale('en' , 'EN');
+        context.setLocale(locale);
+        ThirdTaskConstants.defaultLanguage = 'en';
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -60,6 +76,10 @@ class _ThirdTaskScreenState extends State<ThirdTaskScreen> with TickerProviderSt
             Tab(text: 'favourite'.tr().toString(),),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>changeLanguage(),
+        child: Text(ThirdTaskConstants.defaultLanguage),
       ),
       body: TabBarView(
         controller: _controller,
