@@ -2,5 +2,7 @@
   "popular": "POPULAR",
   "topRated": "TOP RATED",
   "favourite" : "FAVOURITE",
-  "noInternetConnection": "No Internet Connection"
+  "noInternetConnection": "No Internet Connection",
+  "failedToLoad": "Failed To Load",
+  "ok": "OK"
 }

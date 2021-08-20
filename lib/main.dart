@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_fatura/provider/movie_Provider.dart';
+import 'package:hackathon_fatura/spalsh_screen.dart';
 import 'package:hackathon_fatura/task.dart';
 import 'package:hackathon_fatura/tasks/first_task/first_task_screen.dart';
 import 'package:hackathon_fatura/tasks/second_task/second_task_screen.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: MyHomePage(),
+        home: SplashScreen(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

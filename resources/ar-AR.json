@@ -2,5 +2,7 @@
   "popular": "شائع",
   "topRated": "أعلى التقييمات",
   "favourite" : "المفضلة",
-  "noInternetConnection": "لا يوجد اتصال بالإنترنت"
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت",
+  "failedToLoad" : "فشل في التحميل",
+  "ok": "موافق"
 }

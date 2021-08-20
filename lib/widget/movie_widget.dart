@@ -5,6 +5,7 @@ import 'package:hackathon_fatura/provider/movie_Provider.dart';
 import 'package:hackathon_fatura/tasks/third_task/third_task_constants.dart';
 import 'package:hackathon_fatura/widget/favourite_button_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 
 class MovieWidget extends StatefulWidget {
@@ -32,6 +33,22 @@ class _MovieWidgetState extends State<MovieWidget> {
       setState(() {
         _model = value;
         _isLoading = false;
+      });
+    }).catchError((_){
+      setState(() {
+        _isLoading = false;
+        final snackBar = SnackBar(
+          content: Text('failedToLoad'.tr().toString()),
+          duration: Duration(seconds: 5),
+          action: SnackBarAction(
+            textColor: Colors.white,
+            label: 'ok'.tr().toString(),
+            onPressed: () {
+              // Some code to undo the change.
+            },
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       });
     });
   }
