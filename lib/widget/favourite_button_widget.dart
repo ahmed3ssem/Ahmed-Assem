@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_fatura/helper/db_helper.dart';
 import 'package:hackathon_fatura/helper/save_offline.dart';
 
 class FavouriteButtonWidget extends StatefulWidget {
@@ -24,7 +25,7 @@ class _FavouriteButtonWidgetState extends State<FavouriteButtonWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    SaveFavouriteOffline.checkMovieExist(widget.id).then((value){
+    DBHelper.checkMovieExist(widget.id).then((value){
       setState(() {
         if(value){
           buttonIcon = Icon(Icons.favorite , color: Colors.red,);
@@ -39,17 +40,18 @@ class _FavouriteButtonWidgetState extends State<FavouriteButtonWidget> {
     return IconButton(
         onPressed: (){
           setState(() {
-            SaveFavouriteOffline.removeMovie(widget.id);
             if(_isFavourite){
+              DBHelper.removePraise(widget.id);
               buttonIcon = Icon(Icons.favorite_border);
               _isFavourite = false;
             } else {
-              movieData.add(widget.name);
-              movieData.add(widget.imageUrl);
-              SaveFavouriteOffline.addMovie(widget.id, movieData);
+              DBHelper.addPraise('praise_table', {
+                'id':widget.id,
+                'praiseName': widget.name,
+                'praiseValue': widget.imageUrl
+              });
               buttonIcon = Icon(Icons.favorite , color: Colors.red,);
               _isFavourite = true;
-              SaveFavouriteOffline.messi();
             }
           });
         },

@@ -21,14 +21,20 @@ class SaveFavouriteOffline{
     }
   }
 
-  static Future<void> messi() async{
+  static Future<List<dynamic>> getMovies() async{
+    List<dynamic> movies = [];
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
     final prefsMap = Map<String, dynamic>();
     for(String key in keys) {
       prefsMap[key] = prefs.get(key);
     }
-    print(prefsMap);
+    prefsMap.forEach((key, value) {
+      for(var values in value){
+        movies.add(values);
+      }
+    });
+    return movies;
   }
 }
 

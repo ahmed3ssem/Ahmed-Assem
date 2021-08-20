@@ -43,7 +43,6 @@ class _MovieWidgetState extends State<MovieWidget> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return _isLoading ? Center(child: CircularProgressIndicator(),) :

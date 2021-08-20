@@ -6,7 +6,6 @@ class MovieProvider{
 
   static Future<MovieModel> getMovieData(String apiUrl)async{
     final url = Uri.parse(apiUrl);
-    print(url.runtimeType);
     final response = await http.get(url);
     if(response.statusCode == 200){
       return MovieModel.fromMap(json.decode(response.body));
