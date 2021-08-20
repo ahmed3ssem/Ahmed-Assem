@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_fatura/provider/movie_Provider.dart';
 import 'package:hackathon_fatura/task.dart';
 import 'package:hackathon_fatura/tasks/first_task/first_task_screen.dart';
 import 'package:hackathon_fatura/tasks/second_task/second_task_screen.dart';
 import 'package:hackathon_fatura/tasks/third_task/third_task_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,18 +25,24 @@ void main() async{
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Fatura Hackathon',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(providers: [
+      ChangeNotifierProvider.value(
+        value: MovieProvider(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-    );
-  }
+    ],
+      child: MaterialApp(
+        title: 'Fatura Hackathon',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: MyHomePage(),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+      ),
+   );
+ }
 }
 
 class MyHomePage extends StatelessWidget {

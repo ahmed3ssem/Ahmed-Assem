@@ -4,6 +4,7 @@ import 'package:hackathon_fatura/model/movie_model.dart';
 import 'package:hackathon_fatura/provider/movie_Provider.dart';
 import 'package:hackathon_fatura/tasks/third_task/third_task_constants.dart';
 import 'package:hackathon_fatura/widget/favourite_button_widget.dart';
+import 'package:provider/provider.dart';
 
 
 class MovieWidget extends StatefulWidget {
@@ -27,7 +28,7 @@ class _MovieWidgetState extends State<MovieWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    MovieProvider.getMovieData(widget.apiUrl).then((value){
+    Provider.of<MovieProvider>(context , listen: false).getMovieData(widget.apiUrl).then((value){
       setState(() {
         _model = value;
         _isLoading = false;
