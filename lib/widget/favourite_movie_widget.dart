@@ -24,6 +24,7 @@ class _FavouriteMovieWidgetState extends State<FavouriteMovieWidget> {
        favouriteMovies = value;
       });
     });
+
   }
 
   String imageUrl(String? url){
