@@ -5,10 +5,10 @@ import 'package:sqflite/sqlite_api.dart';
 class DBHelper{
   static Future<Database> database() async {
     final dbPath = await sql.getDatabasesPath();
-    return sql.openDatabase(path.join(dbPath, 'praises.db'),
+    return sql.openDatabase(path.join(dbPath, 'movies.db'),
         onCreate: (db, version) {
           return db.execute(
-              'CREATE TABLE praise_table(id INTEGER PRIMARY KEY , praiseName TEXT, praiseValue TEXT)');
+              'CREATE TABLE movie_table(id INTEGER PRIMARY KEY , name TEXT, image TEXT)');
         }, version: 1);
   }
 
@@ -22,7 +22,7 @@ class DBHelper{
 
   static Future<void> removePraise(int id) async {
     final db = await DBHelper.database();
-    await db.rawDelete('DELETE FROM praise_table WHERE id = '+id.toString());
+    await db.rawDelete('DELETE FROM movie_table WHERE id = '+id.toString());
   }
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {
@@ -32,7 +32,7 @@ class DBHelper{
 
   static Future<bool> checkMovieExist(int id) async{
     final db = await DBHelper.database();
-    var result = await db.rawQuery('SELECT praiseName FROM praise_table WHERE id = '+id.toString());
+    var result = await db.rawQuery('SELECT name FROM movie_table WHERE id = '+id.toString());
     if(result.length>0){
       return true;
     } else {

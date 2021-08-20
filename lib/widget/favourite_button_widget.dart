@@ -45,10 +45,10 @@ class _FavouriteButtonWidgetState extends State<FavouriteButtonWidget> {
               buttonIcon = Icon(Icons.favorite_border);
               _isFavourite = false;
             } else {
-              DBHelper.addPraise('praise_table', {
+              DBHelper.addPraise('movie_table', {
                 'id':widget.id,
-                'praiseName': widget.name,
-                'praiseValue': widget.imageUrl
+                'name': widget.name,
+                'image': widget.imageUrl
               });
               buttonIcon = Icon(Icons.favorite , color: Colors.red,);
               _isFavourite = true;

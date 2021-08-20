@@ -19,7 +19,7 @@ class _FavouriteMovieWidgetState extends State<FavouriteMovieWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    DBHelper.getData('praise_table').then((value){
+    DBHelper.getData('movie_table').then((value){
       setState(() {
        favouriteMovies = value;
       });
@@ -51,7 +51,7 @@ class _FavouriteMovieWidgetState extends State<FavouriteMovieWidget> {
                   Container(
                     height: 100,
                     child: CachedNetworkImage(
-                      imageUrl: imageUrl(favouriteMovies[index]['praiseValue']),
+                      imageUrl: imageUrl(favouriteMovies[index]['image']),
                       placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
                       errorWidget: (context, url, error) => Center(child: Icon(Icons.error , color: Colors.blue,),),
                     ),
@@ -64,7 +64,7 @@ class _FavouriteMovieWidgetState extends State<FavouriteMovieWidget> {
                       children: [
                         Container(
                           width: 100,
-                          child: Text(favouriteMovies[index]['praiseName'] ?? "" , style: TextStyle(fontWeight: FontWeight.bold),),
+                          child: Text(favouriteMovies[index]['name'] ?? "" , style: TextStyle(fontWeight: FontWeight.bold),),
                         ),
                       ],
                     ),
